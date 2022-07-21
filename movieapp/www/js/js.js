@@ -11,9 +11,7 @@ search.addEventListener("click", (e) => {
 
       const url = window.location.href
       const strs = url.split('?');
-      const id = strs.at(-1)
-
-      document.querySelector(".pesquisou").innerHTML = `<h2>Você procuro por ${id}</h2>`;
+      const id = strs.at(-1);
     });
 
 });
@@ -28,7 +26,7 @@ window.addEventListener("load", (e) => {
     let filmes = data.results
     filmes.slice(0,25).forEach(e => {
       console.log(e);
-      document.querySelector(".typesmoviesul").innerHTML += `<a href="movie.html?movie_id=${e.id}""><li class="typesmoviesli"><img src="https://image.tmdb.org/t/p/original/${e.poster_path}" class="d-block w-100" alt="..."></li></a>`;
+      document.querySelector(".typesmoviesul").innerHTML += `<a href="movie.html?movie_id=${e.id}""><li class="typesmoviesli"><img src="https://image.tmdb.org/t/p/original/${e.poster_path}" class="d-block w-100" alt="..."><p class="rating"><i class="fa-solid fa-star"></i>${e.vote_average}</p></li></a>`;
     });
     
   });
