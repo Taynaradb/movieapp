@@ -1,33 +1,36 @@
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'bcc0e0fcf0msh2e40896a1c8ec16p1bf569jsna59b4907ea2d',
-		'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
-	}
-};
+search = document.getElementById("search");
 
 
-fetch('https://online-movie-database.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=adventure&limit=5', options)
-	.then(response => response.json())
-	.then(data => {
-        console.log(data[6])
-      const list = data;
-    list.map((item) => {
+search.addEventListener("click", (e) => {
+  searchvalue = document.getElementById("searchval").value;
+  fetch(`https://api.themoviedb.org/3/search/company?api_key=03915128fff1f759c3346cf6ecdb5695&query=${searchvalue}&page=1`)
+    .then(response => response.json())
+    .then(data => {
 
-var textArray = item.split('/')
-if(textArray.length>2){
-  tconst = textArray.slice(2).join('/').trim();
-}
-        fetch(`https://online-movie-database.p.rapidapi.com/title/get-details?tconst=${tconst}`, options)
-        .then(response => response.json())
-        .then(data =>{
-            const moviegenreimg = data.image.url
-            const movie = `<li class="typesmoviesli"><img src="${moviegenreimg}"></li>`;
+      location.href=`search.html?${searchvalue}`;
 
-        document.querySelector(".typesmoviesul").innerHTML += movie;
-        })
-    .catch(err => console.error(err))
+      const url = window.location.href
+      const strs = url.split('?');
+      const id = strs.at(-1)
 
+      document.querySelector(".pesquisou").innerHTML = `<h2>Você procuro por ${id}</h2>`;
     });
-    })
-	.catch(err => console.error(err))
+
+});
+
+window.addEventListener("load", (e) => {
+  
+  fetch(`https://api.themoviedb.org/3/movie/popular?api_key=03915128fff1f759c3346cf6ecdb5695`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.results);
+
+    let filmes = data.results
+    filmes.slice(0,25).forEach(e => {
+      console.log(e);
+      document.querySelector(".typesmoviesul").innerHTML += `<a href="movie.html?movie_id=${e.id}""><li class="typesmoviesli"><img src="https://image.tmdb.org/t/p/original/${e.poster_path}" class="d-block w-100" alt="..."></li></a>`;
+    });
+    
+  });
+
+});

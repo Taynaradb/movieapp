@@ -28,14 +28,15 @@ body {
     width: 304px;
     height: 580px;
     padding: 20px 25px;
-    padding-bottom: 0!important;
-    overflow: hidden;
+    padding-bottom: 0 !important;
+    overflow: auto;
     position: relative;
     border-radius: 15px;
     background: var(--whitegray);
     box-shadow: 0px 6px 15px var(--lightbshadow);
 }
-.wrapper::-webkit-scrollbar{
+
+.wrapper::-webkit-scrollbar {
     width: 0px;
 }
 
@@ -49,6 +50,12 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.typesmoviesheader h2{  font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--fontgrey);
 }
 
 .searchheader h2 {
@@ -74,13 +81,39 @@ i {
     color: var(--fontgrey);
 }
 
-input.nosubmit {
-    border: 1px solid #555;
-    width: 100%;
-    padding: 9px 4px 9px 40px;
-    border-radius: 5px;
-    box-shadow: 1px 0px 5px var(--lightbshadow);
-    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+.searcharea input[type=text] {
+    padding: 5px;
+    font-size: 18px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+}
+
+.searcharea button {
+    float: left;
+    width: 20%;
+    padding: 5px;
+    background: #2196F3;
+    color: white;
+    font-size: 18px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+.searcharea button i{
+    color:#fff;
+}
+
+.searcharea button:hover {
+    background: #0b7dda;
+}
+
+.searcharea::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 .destaqueheader h2,
@@ -124,12 +157,14 @@ input.nosubmit {
     line-height: 12px;
     color: #CBC3E3;
 }
-.typestitles>ul>a:hover{
+
+.typestitles>ul>a:hover {
     background: #CBC3E3;
     border: 1px solid #CBC3E3;
     color: #fff;
 }
-.typestitles>ul>a>li{
+
+.typestitles>ul>a>li {
     cursor: pointer;
 }
 
@@ -141,7 +176,7 @@ input.nosubmit {
     margin-top: 5px;
 }
 
-.typesmoviesli  {
+.typesmoviesli {
     list-style: none;
     border-radius: 5px;
 }
@@ -152,4 +187,19 @@ input.nosubmit {
     height: 200px;
     width: 120px;
     object-fit: cover;
+}
+
+ol, ul {
+    padding-left: 0!important;
+}
+
+.homeheader{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.homelink{
+    color: #CBC3E3!important;
+    text-decoration: none!important;
+
 }

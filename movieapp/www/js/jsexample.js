@@ -1,62 +1,31 @@
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'bcc0e0fcf0msh2e40896a1c8ec16p1bf569jsna59b4907ea2d',
-		'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
-	}
-};
+search = document.getElementById("search");
 
-/*fetch('https://online-movie-database.p.rapidapi.com/auto-complete?q=game', options)
-	.then(response => response.json())
-	.then(data => {
-      const list = data.d;
 
-    list.map((item) => {
-        const name = item.l;
-        const poster = item.i.imageUrl;
-        const movie = `<li><img src="${poster}"><h2>${name}</h2></li>`;
-
-        document.querySelector(".typesmovies").innerHTML += movie;
+search.addEventListener("click", (e) => {
+  searchvalue = document.getElementById("searchval").value;
+  fetch(`https://api.themoviedb.org/3/search/company?api_key=03915128fff1f759c3346cf6ecdb5695&query=${searchvalue}&page=1`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
     });
-    })
-	.catch(err => console.error(err))*/
 
-    fetch('https://online-movie-database.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=adventure&limit=3', options)
-.then(response => response.json())
-.then(data => {
-const list = data.d;
-
-list.map((item) => {
-    const id = item.id;
-    const movie = `<li><h2>${id}</h2></li>`;
-console.log(movies;)
 });
 
-firstmovie = data[1];
+window.addEventListener("load", (e) => {
+  
+  fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=03915128fff1f759c3346cf6ecdb5695`)
+    .then(response => response.json())
+    .then(data => {
+      const list = data.genres;
+        list.map((item) => {
+        const name = item.name;
+        const movie = `<a><li id="${name}">${name}</li></a>`;
 
-var textArray = firstmovie.split('/')
-if(textArray.length>2){
-  tconst = textArray.slice(2).join('/').trim();
-}
-console.log(tconst);
-
-fetch(`https://online-movie-database.p.rapidapi.com/title/get-details?tconst=${tconst}`, options)
-	.then(response => response.json())
-	.then(data => {
-console.log(data);
-console.log(data.id);
-})
-	.catch(err => console.error(err));
-})
-.catch(err => console.error(err));
+        document.querySelector(".typestitles ul").innerHTML += movie;
+    });
+    });
 
 
-/*const options = {
-	method: 'GET',
-	headers: {  tt9288046
-		'X-RapidAPI-Key': 'bcc0e0fcf0msh2e40896a1c8ec16p1bf569jsna59b4907ea2d',
-		'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
-	}
-};
 
-*/
+
+});
